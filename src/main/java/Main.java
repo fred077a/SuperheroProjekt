@@ -25,6 +25,7 @@ public class Main {
 
             //Processing choice
             if (menuChoice == 1) {
+                //Add superhero
                 System.out.print("Enter superhero name: ");
                 String name = scanner.next();
                 System.out.print("Enter superpower: ");
@@ -37,6 +38,7 @@ public class Main {
                 double strength = scanner.nextDouble();
                 database.addSuperhero(new Superhero(name, superpower, form, yearIntroduced, strength));
             } else if (menuChoice == 2) {
+                //See all superheroes
                 ArrayList<Superhero> superheroes = database.getSuperheroes();
                 if (superheroes.size() > 0) {
                     for (int i = 0; i < superheroes.size(); i++) System.out.println("#" + i + ": " + superheroes.get(i));
