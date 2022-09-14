@@ -6,21 +6,12 @@ public class Database {
         this.superheroes = new ArrayList<Superhero>();
     }
 
-    public void printList() {
-        if (this.superheroes.size() > 0) {
-            for (int i = 0; i < this.superheroes.size(); i++) {
-                System.out.println("#" + i + ": " + superheroes.get(i));
-            }
-        } else {
-            System.out.println("There are no superheroes in the database...");
-        }
-    }
     public ArrayList<Superhero> getSuperheroes() {
         return this.superheroes;
     }
 
-    public void addSuperhero(Superhero superhero) {
-        this.superheroes.add(superhero);
+    public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
+        this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
     }
 
     public void update(Superhero superhero) {

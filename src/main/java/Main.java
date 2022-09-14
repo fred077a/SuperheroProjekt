@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,13 +37,13 @@ public class Main {
                 int yearIntroduced = scanner.nextInt();
                 System.out.print("Enter strength: ");
                 double strength = scanner.nextDouble();
-                database.addSuperhero(new Superhero(name, superpower, form, yearIntroduced, strength));
+                database.addSuperhero(name, superpower, form, yearIntroduced, strength);
             } else if (menuChoice == 2) {
                 //See all superheroes
                 ArrayList<Superhero> superheroes = database.getSuperheroes();
-                if (superheroes.size() > 0) {
-                    for (int i = 0; i < superheroes.size(); i++) System.out.println("#" + i + ": " + superheroes.get(i));
-                } else System.out.println("There are no superheroes in the database...");
+                if (superheroes.size() > 0)
+                    for (Superhero superhero: database.getSuperheroes()) System.out.println(superhero);
+                else System.out.println("There are no superheroes in the database...");
             } else break; //Code has been exited
         } while (true);
     }
