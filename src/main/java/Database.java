@@ -10,6 +10,17 @@ public class Database {
         return this.superheroes;
     }
 
+    public String searchSuperhero(String search) {
+        String result = "No match for: '" + search + "'";
+        for (Superhero superhero: this.superheroes) {
+            if (superhero.getName().toLowerCase().contains(search)) {
+                result = superhero.toString();
+                break;
+            }
+        }
+        return result;
+    }
+
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
         this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
     }
