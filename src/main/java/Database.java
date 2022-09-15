@@ -11,12 +11,9 @@ public class Database {
     }
 
     public String searchSuperhero(String search) {
-        String result = "No match for: '" + search + "'";
+        String result = "";
         for (Superhero superhero: this.superheroes) {
-            if (superhero.getName().toLowerCase().contains(search)) {
-                result = superhero.toString();
-                break;
-            }
+            if (superhero.getName().toLowerCase().contains(search)) result = result + superhero + "\n";
         }
         return result;
     }
@@ -24,9 +21,29 @@ public class Database {
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
         this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
     }
-
-    public void update(Superhero superhero) {
-        this.superheroes.add(superhero);
+    public boolean doesExist(String search) {
+        boolean doesExist = false;
+        for (Superhero superhero: this.superheroes) {
+            if (superhero.getName().toLowerCase().contains(search)) {
+                doesExist = true;
+                break;
+            }
+        }
+        return doesExist;
+    }
+    public String update(String search, String name, String superPower, String form, String yearIntroduced, String strength) {
+        String result = "";
+        for (Superhero superhero: this.superheroes) {
+            if (superhero.getName().toLowerCase().contains(search)) {
+                if (!name.isEmpty()) superhero.setName(name);
+                if (!superPower.isEmpty()) superhero.setSuperPower(superPower);
+                if (!form.isEmpty()) superhero.setForm(form);
+                if (!yearIntroduced.isEmpty()) superhero.setYearIntroduced(Integer.parseInt(yearIntroduced));
+                if (!strength.isEmpty()) superhero.setStrength(Double.parseDouble(strength));
+                result = superhero.toString();
+            }
+        }
+        return result;
     }
     public void delete(Superhero superhero) {
         this.superheroes.add(superhero);
