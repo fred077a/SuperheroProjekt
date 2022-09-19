@@ -26,7 +26,7 @@ public class UserInterface {
 
             //User selects option
             System.out.print("I want to: ");
-            int menuChoice = scanner.nextInt();
+            int menuChoice = getIntInput();
 
             //Processing choice
             if (menuChoice == 1) this.addSuperhero();
@@ -45,9 +45,9 @@ public class UserInterface {
         System.out.print("Enter form (human, alien etc.): ");
         String form = scanner.next();
         System.out.print("Enter year introduced: ");
-        int yearIntroduced = scanner.nextInt();
+        int yearIntroduced = getIntInput();
         System.out.print("Enter strength: ");
-        double strength = scanner.nextDouble();
+        double strength = getDoubleInput();
         database.addSuperhero(name, superpower, form, yearIntroduced, strength);
     }
     public void getSuperheroes() {
@@ -84,5 +84,25 @@ public class UserInterface {
             System.out.print("Superhero was changed to: ");
             System.out.println(database.update(search, name, superpower, form, yearIntroduced, strength));
         } else System.out.println("No match found for " + search);
+    }
+    private int getIntInput() {
+        do {
+            try {
+                int num = new Scanner(System.in).nextInt();
+                return num;
+            } catch (Exception ex) {
+                System.out.print("Sorry, but you need to enter a number: ");
+            }
+        } while (true);
+    }
+    private double getDoubleInput() {
+        do {
+            try {
+                double num = new Scanner(System.in).nextDouble();
+                return num;
+            } catch (Exception ex) {
+                System.out.print("Sorry, but you need to enter a number: ");
+            }
+        } while (true);
     }
 }
