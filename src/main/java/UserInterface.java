@@ -22,6 +22,7 @@ public class UserInterface {
             System.out.println("2. See all superheroes");
             System.out.println("3. Search by name");
             System.out.println("4. Edit superhero");
+            System.out.println("5. Delete superhero");
             System.out.println("9. Exit");
 
             //User selects option
@@ -33,6 +34,7 @@ public class UserInterface {
             else if (menuChoice == 2) this.getSuperheroes();
             else if (menuChoice == 3 ) this.searchSuperhero();
             else if (menuChoice == 4 ) this.editSuperhero();
+            else if (menuChoice == 5 ) this.deleteSuperhero();
             else break; //Program has been exited
         } while (true);
     }
@@ -52,8 +54,7 @@ public class UserInterface {
     }
     public void getSuperheroes() {
         //See all superheroes
-        ArrayList<Superhero> superheroes = database.getSuperheroes();
-        if (superheroes.size() > 0)
+        if (database.getSuperheroes().size() > 0)
             for (Superhero superhero: database.getSuperheroes()) System.out.println(superhero);
         else System.out.println("There are no superheroes in the database...");
     }
@@ -84,6 +85,15 @@ public class UserInterface {
             System.out.print("Superhero was changed to: ");
             System.out.println(database.update(search, name, superpower, form, yearIntroduced, strength));
         } else System.out.println("No match found for " + search);
+    }
+    public void deleteSuperhero() {
+        //delete superhero by name
+        if (database.getSuperheroes().size() > 0) {
+            System.out.print("Please enter name of the superhero to be deleted: ");
+            String search = scanner.next();
+            if (database.doesExist(search)) database.delete(search);
+            else System.out.println("No match found for: " + search);
+        } else System.out.println("There are no superheroes in the database...");
     }
     private int getIntInput() {
         do {

@@ -1,3 +1,5 @@
+import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 
 public class Database {
@@ -5,11 +7,9 @@ public class Database {
     public Database() {
         this.superheroes = new ArrayList<Superhero>();
     }
-
     public ArrayList<Superhero> getSuperheroes() {
         return this.superheroes;
     }
-
     public String searchSuperhero(String search) {
         String result = "";
         for (Superhero superhero: this.superheroes) {
@@ -17,7 +17,6 @@ public class Database {
         }
         return result;
     }
-
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
         this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
     }
@@ -45,7 +44,12 @@ public class Database {
         }
         return result;
     }
-    public void delete(Superhero superhero) {
-        this.superheroes.add(superhero);
+    public void delete(String name) {
+        for (Superhero superhero: superheroes) {
+            if (superhero.getName().toLowerCase().contains(name.toLowerCase())) {
+                superheroes.remove(superhero);
+                break;
+            }
+        }
     }
 }
