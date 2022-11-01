@@ -1,19 +1,16 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    private Database database = new Database();
+    private Controller controller = new Controller();
     private Scanner scanner = new Scanner(System.in).useDelimiter(System.getProperty("line.separator")); //stops errors when using spaces as input
 
     public void run() {
         //Introduction
         System.out.println("Welcome to Superhero Database");
-
         //For testing purposes:
-        database.addSuperhero("Superman", "Laser", "Alien", 1950, 12000);
-        database.addSuperhero("Spider-man", "Strength", "Human", 1970, 2000);
-        database.addSuperhero("Batman", "Rich", "Human", 1939, 100);
-
+        controller.addSuperhero("Superman", "Laser", "Alien", 1950, 12000);
+        controller.addSuperhero("Spider-man", "Strength", "Human", 1970, 2000);
+        controller.addSuperhero("Batman", "Rich", "Human", 1939, 100);
         //Menu in a loop
         do {
             //Menu items
@@ -30,16 +27,16 @@ public class UserInterface {
             int menuChoice = getIntInput();
 
             //Processing choice
-            if (menuChoice == 1) this.addSuperhero();
-            else if (menuChoice == 2) this.getSuperheroes();
-            else if (menuChoice == 3 ) this.searchSuperhero();
-            else if (menuChoice == 4 ) this.editSuperhero();
-            else if (menuChoice == 5 ) this.deleteSuperhero();
+            if (menuChoice == 1) addSuperhero();
+            else if (menuChoice == 2) getSuperheroes();
+            else if (menuChoice == 3 ) searchSuperhero();
+            else if (menuChoice == 4 ) editSuperhero();
+            else if (menuChoice == 5 ) deleteSuperhero();
             else break; //Program has been exited
         } while (true);
     }
+
     public void addSuperhero() {
-        //Add superhero
         System.out.print("Enter superhero name: ");
         String name = scanner.next();
         System.out.print("Enter superpower: ");
@@ -50,27 +47,14 @@ public class UserInterface {
         int yearIntroduced = getIntInput();
         System.out.print("Enter strength: ");
         double strength = getDoubleInput();
-        database.addSuperhero(name, superpower, form, yearIntroduced, strength);
+        controller.addSuperhero(name, superpower, form, yearIntroduced, strength);
     }
-    public void getSuperheroes() {
-        //See all superheroes
-        if (database.getSuperheroes().size() > 0)
-            for (Superhero superhero: database.getSuperheroes()) System.out.println(superhero);
-        else System.out.println("There are no superheroes in the database...");
-    }
-    public void searchSuperhero() {
-        //Search for superhero by name, if more matches, then take first
-        System.out.print("Please enter name to search for: ");
-        String name = scanner.next();
-        if (database.doesExist(name))
-            System.out.println(database.searchSuperhero(name));
-        else System.out.println("No match found for: " + name);
-    }
+
     public void editSuperhero() {
         //Edit superhero
         System.out.print("Please enter current name of the superhero to be edited: ");
         String search = scanner.next();
-        if (database.doesExist(search)) {
+        if (controller.doesExist(search)) {
             //exists
             System.out.print("Enter new superhero name: ");
             String name = scanner.next();
@@ -83,18 +67,42 @@ public class UserInterface {
             System.out.print("Enter new strength: ");
             String strength = scanner.next();
             System.out.print("Superhero was changed to: ");
-            System.out.println(database.update(search, name, superpower, form, yearIntroduced, strength));
+            System.out.println(controller.update(search, name, superpower, form, yearIntroduced, strength));
         } else System.out.println("No match found for " + search);
     }
+
+    public void getSuperheroes() {
+        //See all superheroes
+        if (controller.getSuperheroes().size() > 0)
+            for (Superhero superhero: controller.getSuperheroes()) System.out.println(superhero);
+        else System.out.println("There are no superheroes in the database...");
+    }
+
+    public void searchSuperhero() {
+        //Search for superhero by name, if more matches, then take first
+        System.out.print("Please enter name to search for: ");
+        String name = scanner.next();
+        if (controller.doesExist(name)) {
+            System.out.println(controller.searchSuperhero(name));
+        } else {
+            System.out.println("No match found for: " + name);
+        }
+    }
+
     public void deleteSuperhero() {
         //delete superhero by name
-        if (database.getSuperheroes().size() > 0) {
+        if (controller.getSuperheroes().size() > 0) {
             System.out.print("Please enter name of the superhero to be deleted: ");
             String search = scanner.next();
-            if (database.doesExist(search)) database.delete(search);
-            else System.out.println("No match found for: " + search);
+            if (controller.doesExist(search)) {
+                controller.delete(search);
+            }
+            else {
+                System.out.println("No match found for: " + search);
+            }
         } else System.out.println("There are no superheroes in the database...");
     }
+
     private int getIntInput() {
         do {
             try {
@@ -105,6 +113,7 @@ public class UserInterface {
             }
         } while (true);
     }
+
     private double getDoubleInput() {
         do {
             try {
