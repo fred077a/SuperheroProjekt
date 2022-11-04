@@ -1,10 +1,14 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class UserInterface {
     private Controller controller = new Controller();
     private Scanner scanner = new Scanner(System.in).useDelimiter(System.getProperty("line.separator")); //stops errors when using spaces as input
 
-    public void run() {
+    public UserInterface() throws FileNotFoundException {
+    }
+
+    public void run() throws FileNotFoundException {
         //Introduction
         System.out.println("Welcome to Superhero Database");
         //For testing purposes:
@@ -20,6 +24,8 @@ public class UserInterface {
             System.out.println("3. Search by name");
             System.out.println("4. Edit superhero");
             System.out.println("5. Delete superhero");
+            System.out.println("6. Save list");
+            System.out.println("7. load list");
             System.out.println("9. Exit");
 
             //User selects option
@@ -27,12 +33,37 @@ public class UserInterface {
             int menuChoice = getIntInput();
 
             //Processing choice
-            if (menuChoice == 1) addSuperhero();
-            else if (menuChoice == 2) getSuperheroes();
-            else if (menuChoice == 3 ) searchSuperhero();
-            else if (menuChoice == 4 ) editSuperhero();
-            else if (menuChoice == 5 ) deleteSuperhero();
-            else break; //Program has been exited
+            switch (menuChoice) {
+                case 1: {
+                    addSuperhero();
+                    break;
+                }
+                case 2: {
+                    getSuperheroes();
+                    break;
+                }
+                case 3: {
+                    searchSuperhero();
+                    break;
+                }
+                case 4: {
+                    editSuperhero();
+                    break;
+                }
+                case 5: {
+                    deleteSuperhero();
+                    break;
+                }
+                case 6: {
+                    controller.saveSuperheroes();
+                    break;
+                }
+                case 7: {
+                    controller.loadSuperheroes();
+                    break;
+                }
+                default: break;
+            }
         } while (true);
     }
 

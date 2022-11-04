@@ -16,6 +16,9 @@ public class Database {
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
         this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
     }
+    public void addSuperhero(Superhero superhero) {
+        this.superheroes.add(superhero);
+    }
 
     public void delete(String name) {
         for (Superhero superhero: superheroes) {

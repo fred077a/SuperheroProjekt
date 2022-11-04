@@ -12,6 +12,7 @@ public class Superhero {
         this.yearIntroduced = yearIntroduced;
         this.strength = strength;
     }
+
     public String toString() {
         final String green = "\u001B[32m";
         final String yellow = "\u001B[33m";
@@ -28,6 +29,18 @@ public class Superhero {
 
     String getName() {
         return this.name;
+    }
+    String getForm() {
+        return this.form;
+    }
+    String getSuperPower() {
+        return this.superPower;
+    }
+    double getStrength() {
+        return this.strength;
+    }
+    int getYearIntroduced() {
+        return this.yearIntroduced;
     }
 
     public void setName(String name) {
