@@ -55,12 +55,13 @@ public class UserInterface {
                     break;
                 }
                 case 6: {
-                    controller.saveSuperheroes();
+                    sortSuperhero();
                     break;
                 }
-                case 7: {
-                    controller.loadSuperheroes();
-                    break;
+                case 9: {
+
+                    controller.saveSuperheroes();
+                    System.exit(0);
                 }
                 default: break;
             }

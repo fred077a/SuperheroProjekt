@@ -38,6 +38,7 @@ public class Database {
         for (Superhero superhero: superheroes) {
             if (superhero.getName().toLowerCase().contains(name.toLowerCase())) {
                 superheroes.remove(superhero);
+                setChangesMade();
                 break;
             }
         }
