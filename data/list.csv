@@ -1,7 +1,6 @@
-Spider-man;Human;Strength;2000.0;1970
-Batman;Human;Rich;100.0;1939
-Captain America;Human;Strong;1.0;1969
-Hulk;Human;Strongaf;20000;1980
-Ant-man;Human;Size changing;20;1980
-Batgirl;Human;Broke;50.0;2000
-Captain America;Human;Strong;3.0;1970
+Batman;Rich;Human;100.0;1939
+Captain America;Strong;Human;3.0;1970
+Spider-man;Strength;Human;2000.0;1970
+Ant-man;Size changing;Human;20.0;1980
+Hulk;Strongaf;Human;20000.0;1980
+Batgirl;Broke;Human;50.0;2000
