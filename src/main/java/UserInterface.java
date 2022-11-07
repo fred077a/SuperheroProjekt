@@ -9,12 +9,13 @@ public class UserInterface {
     }
 
     public void run() throws FileNotFoundException {
+        controller.loadSuperheroes();
         //Introduction
         System.out.println("Welcome to Superhero Database");
-        //For testing purposes:
+        /*//For testing purposes:
         controller.addSuperhero("Superman", "Laser", "Alien", 1950, 12000);
         controller.addSuperhero("Spider-man", "Strength", "Human", 1970, 2000);
-        controller.addSuperhero("Batman", "Rich", "Human", 1939, 100);
+        controller.addSuperhero("Batman", "Rich", "Human", 1939, 100);*/
         //Menu in a loop
         do {
             //Menu items

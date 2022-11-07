@@ -28,6 +28,7 @@ public class Database {
 
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {
         this.superheroes.add(new Superhero(name, superpower, form, yearIntroduced, strength));
+        setChangesMade();
     }
     public void addSuperhero(Superhero superhero) {
         this.superheroes.add(superhero);
@@ -40,5 +41,33 @@ public class Database {
                 break;
             }
         }
+    }
+
+    public void sortSuperheroes(int choice) {
+        Collections.sort(superheroes, new Comparator<Superhero>() {
+            @Override
+            public int compare(Superhero s1, Superhero s2) {
+                switch (choice) {
+                    case 1: {
+                        return String.valueOf(s1.getName()).compareTo(String.valueOf(s2.getName()));
+                    }
+                    case 2: {
+                        return String.valueOf(s1.getSuperPower()).compareTo(String.valueOf(s2.getSuperPower()));
+                    }
+                    case 3: {
+                        return String.valueOf(s1.getForm()).compareTo(String.valueOf(s2.getForm()));
+                    }
+                    case 4: {
+                        return Double.valueOf(s1.getStrength()).compareTo(Double.valueOf(s2.getStrength()));
+                    }
+                    case 5: {
+                        return s1.getYearIntroduced() - s2.getYearIntroduced();
+                    }
+                    default: {
+                        return String.valueOf(s1.getName()).compareTo(String.valueOf(s2.getName()));
+                    }
+                }
+            }
+        });
     }
 }

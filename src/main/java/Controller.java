@@ -75,6 +75,7 @@ public class Controller {
                 }
                 result = superhero.toString();
             }
+            database.setChangesMade();
         }
         return result;
     }
@@ -88,4 +89,7 @@ public class Controller {
         }
     }
 
+    public void sortSuperheroes(int choice) {
+        database.sortSuperheroes(choice);
+    }
 }
