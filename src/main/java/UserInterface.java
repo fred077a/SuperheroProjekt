@@ -55,6 +55,10 @@ public class UserInterface {
                     sortSuperhero();
                     break;
                 }
+                case 7: {
+                    specifiedSort();
+                    break;
+                }
                 case 9: {
 
                     controller.saveSuperheroes();
