@@ -24,9 +24,8 @@ public class UserInterface {
             System.out.println("3. Search by name");
             System.out.println("4. Edit superhero");
             System.out.println("5. Delete superhero");
-            System.out.println("6. Save list");
-            System.out.println("7. load list");
-            System.out.println("9. Exit");
+            System.out.println("6: Sort superhero by name");
+            System.out.println("9. Save and exit");
 
             //User selects option
             System.out.print("I want to: ");
@@ -39,7 +38,7 @@ public class UserInterface {
                     break;
                 }
                 case 2: {
-                    getSuperheroes();
+                    printSuperheroes();
                     break;
                 }
                 case 3: {
@@ -66,6 +65,22 @@ public class UserInterface {
             }
         } while (true);
     }
+
+    public void sortSuperhero() {
+        //Menu items
+        System.out.println("\nYou can sort by:");
+        System.out.println("1. Name");
+        System.out.println("2. Superpower");
+        System.out.println("3. Form");
+        System.out.println("4. Strength");
+        System.out.println("5. Year introduced");
+
+        //User selects option
+        System.out.print("I want to: ");
+        int sortByChoice = getIntInput();
+        controller.sortSuperheroes(sortByChoice);
+        printSuperheroes();
+    };
 
     public void addSuperhero() {
         System.out.print("Enter superhero name: ");
@@ -102,11 +117,15 @@ public class UserInterface {
         } else System.out.println("No match found for " + search);
     }
 
-    public void getSuperheroes() {
+    public void printSuperheroes() {
         //See all superheroes
         if (controller.getSuperheroes().size() > 0)
-            for (Superhero superhero: controller.getSuperheroes()) System.out.println(superhero);
-        else System.out.println("There are no superheroes in the database...");
+            for (Superhero superhero: controller.getSuperheroes()) {
+                System.out.println(superhero);
+            }
+        else {
+            System.out.println("There are no superheroes in the database...");
+        }
     }
 
     public void searchSuperhero() {

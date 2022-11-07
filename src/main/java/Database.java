@@ -1,9 +1,13 @@
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
 
 public class Database {
     private ArrayList<Superhero> superheroes;
+    private boolean changesMade = false;
 
     public Database() {
         this.superheroes = new ArrayList<>();
@@ -11,6 +15,15 @@ public class Database {
 
     public ArrayList<Superhero> getSuperheroes() {
         return this.superheroes;
+    }
+
+
+    public boolean getChangesMade() {
+        return changesMade;
+    }
+
+    public void setChangesMade() {
+        this.changesMade = true;
     }
 
     public void addSuperhero(String name, String superpower, String form, int yearIntroduced, double strength) {

@@ -28,9 +28,13 @@ public class Controller {
         return doesExist;
     }
 
+
     public void saveSuperheroes() throws FileNotFoundException {
-        ArrayList<Superhero> superheroes = database.getSuperheroes();
-        fileHandler.saveList(superheroes);
+        boolean changesMade = database.getChangesMade();
+        if (changesMade) {
+            ArrayList<Superhero> superheroes = database.getSuperheroes();
+            fileHandler.saveList(superheroes);
+        }
     }
 
     public void loadSuperheroes() throws FileNotFoundException {
