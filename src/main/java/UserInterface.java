@@ -11,11 +11,7 @@ public class UserInterface {
     public void run() throws FileNotFoundException {
         controller.loadSuperheroes();
         //Introduction
-        System.out.println("Welcome to Superhero Database");
-        /*//For testing purposes:
-        controller.addSuperhero("Superman", "Laser", "Alien", 1950, 12000);
-        controller.addSuperhero("Spider-man", "Strength", "Human", 1970, 2000);
-        controller.addSuperhero("Batman", "Rich", "Human", 1939, 100);*/
+        System.out.println("Welcome to The Superhero Database");
         //Menu in a loop
         do {
             //Menu items
@@ -26,6 +22,7 @@ public class UserInterface {
             System.out.println("4. Edit superhero");
             System.out.println("5. Delete superhero");
             System.out.println("6: Sort superhero by name");
+            System.out.println("7: Sort superhero by primary and secondary");
             System.out.println("9. Save and exit");
 
             //User selects option
@@ -67,6 +64,38 @@ public class UserInterface {
             }
         } while (true);
     }
+
+    public void specifiedSort() {
+        //Menu items
+        System.out.println("\nChoose your primary sorting option:");
+        System.out.println("1. Name");
+        System.out.println("2. Superpower");
+        System.out.println("3. Form");
+        System.out.println("4. Strength");
+        System.out.println("5. Year introduced");
+
+
+
+        //User selects option
+        System.out.print("I want to: ");
+        int primaryChoice = getIntInput();
+
+        //Menu items2
+        System.out.println("\nChoose your secondary sorting option:");
+        System.out.println("1. Name");
+        System.out.println("2. Superpower");
+        System.out.println("3. Form");
+        System.out.println("4. Strength");
+        System.out.println("5. Year introduced");
+
+        //User selects option
+        System.out.print("I want to: ");
+        int secondaryChoice = getIntInput();
+
+        controller.sortSuperheroes(primaryChoice);
+        controller.sortSuperheroes(secondaryChoice);
+        printSuperheroes();
+    };
 
     public void sortSuperhero() {
         //Menu items
@@ -121,6 +150,12 @@ public class UserInterface {
 
     public void printSuperheroes() {
         //See all superheroes
+        String red = "\u001B[31m";
+        String green = "\u001B[32m";
+        String yellow = "\u001B[33m";
+        String blue = "\u001B[34m";
+        String purple = "\u001B[35m";
+        String reset = "\u001B[0m";
         if (controller.getSuperheroes().size() > 0)
             for (Superhero superhero: controller.getSuperheroes()) {
                 System.out.println(superhero);
