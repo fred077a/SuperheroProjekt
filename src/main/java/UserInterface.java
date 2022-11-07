@@ -162,11 +162,11 @@ public class UserInterface {
         String reset = "\u001B[0m";
         if (controller.getSuperheroes().size() > 0)
             for (Superhero superhero: controller.getSuperheroes()) {
-                System.out.printf(red + "Name: %-20s  \u001B[32m Superpower: %-20s \u001B[33m Form: %-20s \u001B[34m Year introduced: %-12s" +
+                System.out.printf(red + "Name: %-20s  \u001B[32m Superpower: %-20s \u001B[33m Form: %-10s \u001B[34m Year introduced: %-12s" +
                                 "\u001B[35m  Strength: %20s"
                         ,red + superhero.getName()
-                        ,green + superhero.getForm()
-                        ,yellow + superhero.getSuperPower()
+                        ,green + superhero.getSuperPower()
+                        ,yellow + superhero.getForm()
                         ,blue + superhero.getYearIntroduced()
                         ,purple + superhero.getStrength()
                                 + reset + "\n");
