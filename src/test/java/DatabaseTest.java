@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseTest {
@@ -24,4 +27,13 @@ class DatabaseTest {
         database.delete(toDelete);
         assertEquals(0, database.getSuperheroes().size());
     }
+
+    @Test
+    void testFileReading() throws FileNotFoundException {
+        Controller controller = new Controller();
+        controller.loadSuperheroes();
+        System.out.println("Superheroes: " + controller.getSuperheroes().size());
+        assertNotEquals(0, controller.getSuperheroes().size());
+    }
+
 }
